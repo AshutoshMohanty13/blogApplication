@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fetching Query Params from URL</title>
+</head>
+<body>
+
+	<h1>Fetching Query Params from URL</h1>
+
+	<p id="result"></p>
+
+	<script>
+		// Get the URLSearchParams object from the current URL
+		const urlParams = new URLSearchParams(window.location.search);
+
+		// Get the value of the "id" parameter from the URL
+		const id = urlParams.get('token');
+
+		// Set the text content of the "result" element to the value of the "id" parameter
+		document.getElementById('result').textContent = `The value of the "token" parameter is: ${id}`;
+	</script>
+
+</body>
+</html>

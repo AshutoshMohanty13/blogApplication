@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package blogs;
+
+message MessageResponseDef {
+  string message = 1;
+  int32 statusCode = 2;
+}
+message GetAllBlogsResponse {
+  string title = 1;
+  string body = 2;
+  string userId = 3;
+  string userName = 4;
+}
+message GetBlogByUserDto {
+  string userId = 1;
+}
+message GetBlogByUserDef {
+  repeated GetAllBlogsResponse getAllBlogsResponse = 1;
+}
+message GetBlogByIdDto {
+  string id = 1;
+}
+message EmptyDto {}
+
+message UpdateBlogDto {
+  string _id = 1;
+  string userId = 2;
+  optional string title = 3;
+  optional string body = 4;
+}
+
+message DeleteBlogDto {
+  string _id = 1;
+  string userId = 2;
+}
+
+
+
+service BlogService {
+  rpc createBlog (GetAllBlogsResponse) returns (MessageResponseDef) {}
+  rpc getAllBlogs (EmptyDto) returns (GetBlogByUserDef) {}
+  rpc getBlogById (GetBlogByIdDto) returns (GetAllBlogsResponse) {}
+  rpc getBlogByUser (GetBlogByUserDto) returns (GetBlogByUserDef) {}
+  rpc updateBlog (UpdateBlogDto) returns (MessageResponseDef) {}
+  rpc deleteBlog (DeleteBlogDto) returns (MessageResponseDef) {}
+
+
+}
